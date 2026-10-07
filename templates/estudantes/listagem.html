@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fa-solid fa-user-graduate me-2"></i>Lista de Estudantes</h2>
+    <a href="{% url 'estudante_criar' %}" class="btn btn-primary">
+        <i class="fa-solid fa-plus me-1"></i> Novo Estudante
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Foto</th>
+                        <th>Matrícula</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Nascimento</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for estudante in estudantes %}
+                    <tr>
+                        <td>
+                            {% if estudante.foto %}
+                                <img src="{{ estudante.foto.url }}" alt="{{ estudante.nome }}" class="rounded-circle" width="40" height="40" style="object-fit: cover;">
+                            {% else %}
+                                <div class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                            {% endif %}
+                        </td>
+                        <td><strong>#{{ estudante.matricula }}</strong></td>
+                        <td>{{ estudante.nome }}</td>
+                        <td>{{ estudante.email }}</td>
+                        <td>{{ estudante.telefone }}</td>
+                        <td>{{ estudante.nascimento|date:"d/m/Y" }}</td>
+                        <td class="text-center">
+                            <a href="{% url 'estudante_atualizar' estudante.pk %}" class="btn btn-sm btn-outline-warning me-1" title="Editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+                            <a href="{% url 'estudante_deletar' estudante.pk %}" class="btn btn-sm btn-outline-danger" title="Excluir">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">Nenhum estudante cadastrado.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

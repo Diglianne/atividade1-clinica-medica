@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastrar Paciente{% endblock %}
+
+{% block content %}
+<h2>Novo Cadastro de Paciente</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    
+    <label>Nome do Paciente:</label><br>
+    <input type="text" name="nome" required><br><br>
+
+    <label>CPF:</label><br>
+    <input type="text" name="cpf" required><br><br>
+
+    <label>Telefone:</label><br>
+    <input type="text" name="telefone" required><br><br>
+
+    <label>Data de Nascimento:</label><br>
+    <input type="date" name="data_nascimento" required><br><br>
+
+    <button type="submit">Salvar Paciente</button>
+    <a href="{% url 'paciente_listar' %}">Cancelar</a>
+</form>
+{% endblock %}
+

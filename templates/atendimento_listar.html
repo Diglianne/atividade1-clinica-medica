@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Atendimentos{% endblock %}
+
+{% block content %}
+<h2>Lista de Atendimentos</h2>
+<br>
+
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nome do Paciente</th>
+            <th>Duração (Minutos)</th>
+            <th>Sala</th>
+            <th>Agenda</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for atendimento in atendimentos %}
+        <tr>
+            <td>{{ atendimento.codigo }}</td>
+            <td>{{ atendimento.nome_paciente }}</td>
+            <td>{{ atendimento.duracao_minutos }}</td>
+            <td>{{ atendimento.sala }}</td>
+            <td>{{ atendimento.agenda.codigo }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Nenhum atendimento cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

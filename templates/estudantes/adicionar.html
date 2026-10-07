@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Novo Estudante - Gestão Acadêmica{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white d-flex align-items-center">
+                <i class="fa-solid fa-user-plus me-2"></i>
+                <h4 class="mb-0">{% if form.instance.pk %}Editar{% else %}Cadastrar Novo{% endif %} Estudante</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="{{ form.matricula.id_for_label }}" class="form-label fw-bold">Matrícula</label>
+                            {{ form.matricula }}
+                            {% if form.matricula.errors %}<div class="text-danger small">{{ form.matricula.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="{{ form.nome.id_for_label }}" class="form-label fw-bold">Nome Completo</label>
+                            {{ form.nome }}
+                            {% if form.nome.errors %}<div class="text-danger small">{{ form.nome.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">E-mail</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}<div class="text-danger small">{{ form.email.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="{{ form.telefone.id_for_label }}" class="form-label fw-bold">Telefone</label>
+                            {{ form.telefone }}
+                            {% if form.telefone.errors %}<div class="text-danger small">{{ form.telefone.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="{{ form.nascimento.id_for_label }}" class="form-label fw-bold">Data de Nascimento</label>
+                            {{ form.nascimento }}
+                            {% if form.nascimento.errors %}<div class="text-danger small">{{ form.nascimento.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="{{ form.senha.id_for_label }}" class="form-label fw-bold">Senha</label>
+                            {{ form.senha }}
+                            {% if form.senha.errors %}<div class="text-danger small">{{ form.senha.errors.0 }}</div>{% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label for="{{ form.foto.id_for_label }}" class="form-label fw-bold">Foto do Estudante</label>
+                            {{ form.foto }}
+                            {% if form.foto.errors %}<div class="text-danger small">{{ form.foto.errors.0 }}</div>{% endif %}
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{% url 'estudante_listar' %}" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-arrow-left me-1"></i> Voltar
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

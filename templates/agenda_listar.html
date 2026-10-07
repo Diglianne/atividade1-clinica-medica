@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Agendas{% endblock %}
+
+{% block content %}
+<h2>Lista de Agendas</h2>
+<br>
+
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Código da Agenda</th>
+            <th>Ano</th>
+            <th>Período</th>
+            <th>Procedimento</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for agenda in agendas %}
+        <tr>
+            <td>{{ agenda.codigo }}</td>
+            <td>{{ agenda.ano }}</td>
+            <td>{{ agenda.periodo }}</td>
+            <td>{{ agenda.procedimento.nome }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Nenhuma agenda cadastrada.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

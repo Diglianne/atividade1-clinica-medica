@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    # Seus aplicativos devem estar listados exatamente assim:
-    'academico',
-    'estudantes', 
+    # Aplicações de Clínica Médica:
+    'pacientes',
+    'consultas',
+    'ecom',
 ]
 
 MIDDLEWARE = [

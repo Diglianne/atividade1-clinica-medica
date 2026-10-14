@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Sistema Acadêmico{% endblock %}</title>
+    <title>{% block title %}Clínica Médica{% endblock %}</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome Icons -->
@@ -39,7 +39,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="#">
-                <i class="fa-solid fa-graduation-cap me-2"></i>Gestão Acadêmica
+                <i class="fa-solid fa-graduation-cap me-2"></i>Gestão Médica
             </a>
             <span class="navbar-text text-white">
                 <i class="fa-solid fa-user me-1"></i> Painel Administrativo
@@ -77,8 +77,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link {% if 'atendimento' in request.path %}active{% endif %}" href="{% url 'atendimento_listar' %}">
-                    <i class="fa-solid fa-file-medical me-2"></i>Atendimentos
+                <a class="nav-link {% if 'atendimento' in request.path %}active{% endif %}" <a href="#">Atendimentos</a>">
+                    <i class="fa-solid fa-file-medical me-2"></i>Atendimentos  
+
                 </a>
             </li>
 

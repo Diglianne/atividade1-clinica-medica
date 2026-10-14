@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Novo Paciente - Gestão Clínica{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white d-flex align-items-center">
+                <i class="fa-solid fa-user-plus me-2"></i>
+                <h4 class="mb-0">{% if form.instance.pk %}Editar{% else %}Cadastrar Novo{% endif %} Paciente</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}{{ error }}{% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Nome Completo</label>
+                            {{ form.nome }}
+                            {% if form.nome.errors %}<div class="text-danger small">{{ form.nome.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">CPF</label>
+                            {{ form.cpf }}
+                            {% if form.cpf.errors %}<div class="text-danger small">{{ form.cpf.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Telefone</label>
+                            {{ form.telefone }}
+                            {% if form.telefone.errors %}<div class="text-danger small">{{ form.telefone.errors.0 }}</div>{% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Email</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}<div class="text-danger small">{{ form.email.errors.0 }}</div>{% endif %}
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-start">
+                        <button type="submit" class="btn btn-success me-2">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Salvar
+                        </button>
+                        <!-- Corrigido para a rota da clínica -->
+                        <a href="{% url 'paciente_listar' %}" class="btn btn-outline-secondary">
+                            <i class="fa-solid fa-arrow-left me-1"></i> Voltar para Lista
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
